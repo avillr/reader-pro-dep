@@ -6,7 +6,7 @@ export function setEntries (entries) {
   return { type: SET_ENTRIES, entries }
 }
 
-export default function reducer (state = [], action) {
+export default function reducerFeedEntries (state = [], action) {
   switch (action.type) {
     case SET_ENTRIES:
       return action.entries

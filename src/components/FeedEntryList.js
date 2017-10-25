@@ -3,9 +3,9 @@ import React from 'react'
 export default function FeedEntryList ({ entries }) {
   return (
     <ul>
-      {entries.map(entry => {
+      {entries.map((entry, index) => {
         return (
-          <li>
+          <li key={index}>
             <a href={entry.link}>{entry.title}</a>
           </li>
         )
