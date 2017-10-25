@@ -1,27 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getEntries } from '../store'
+import PropTypes from 'prop-types'
+import { getPosts } from '../store'
 
 import FeedEntryList from '../components/FeedEntryList'
 
 class Feed extends Component {
   componentDidMount () {
-    this.props.getEntries('http://www.reddit.com/.rss')
+    this.props.getPosts('http://www.reddit.com/.rss')
   }
 
   render () {
-    console.log(this.props)
-    if (this.props.feedEntries.length) {
-      return <FeedEntryList entries={this.props.feedEntries} />
-    }
-    return <h3>Loading...</h3>
+    const { posts } = this.props
+    return (
+      <div className='App-main'>
+        {posts.length ? <FeedEntryList entries={posts} /> : <h3>Loading...</h3>}
+      </div>
+    )
   }
 }
 
+Feed.propTypes = {
+  posts: PropTypes.array,
+  getPosts: PropTypes.func
+}
+
 const mapState = state => ({
-  feedEntries: state.feedEntries
+  posts: state.posts
 })
 
-const mapDispatch = { getEntries }
+const mapDispatch = { getPosts }
 
 export default connect(mapState, mapDispatch)(Feed)

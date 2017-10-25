@@ -16,10 +16,7 @@ export function setCurrentChannel (url) {
 
 const initialState = {
   currentChannel: '',
-  channels: [
-    'http://www.reddit.com/.rss',
-    'http://www.wsj.com/xml/rss/3_7455.xml'
-  ]
+  list: ['http://www.reddit.com/.rss', 'http://www.wsj.com/xml/rss/3_7455.xml']
 }
 export default function reducerChannels (state = initialState, action) {
   switch (action.type) {
