@@ -1,15 +1,14 @@
 import React from 'react'
 
-export default function FeedEntryList ({ posts, setCurrentPost }) {
+export default function FeedEntryList ({ posts, fetchCurrentPost }) {
   return (
     <div>
       {posts.map((post, index) => {
-        console.log(post)
         return (
           <div
             className='post'
             key={index}
-            onClick={() => setCurrentPost(post.link)}
+            onClick={() => fetchCurrentPost(post.link)}
           >
             {post.title}
           </div>

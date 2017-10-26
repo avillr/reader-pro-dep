@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import '../styles/Feed.css'
-import { getPosts, setCurrentPost } from '../store'
+import { getPosts, fetchCurrentPost } from '../store'
 import FeedEntryList from '../components/FeedEntryList'
 
 class Feed extends Component {
@@ -19,11 +19,11 @@ class Feed extends Component {
   }
 
   render () {
-    const { posts, setCurrentPost } = this.props
+    const { posts, fetchCurrentPost } = this.props
     return (
       <div className='App-feed'>
         {posts.length ? (
-          <FeedEntryList posts={posts} setCurrentPost={setCurrentPost} />
+          <FeedEntryList posts={posts} fetchCurrentPost={fetchCurrentPost} />
         ) : (
           <h3>Loading...</h3>
         )}
@@ -35,7 +35,7 @@ class Feed extends Component {
 Feed.propTypes = {
   posts: PropTypes.array,
   getPosts: PropTypes.func,
-  setCurrentPost: PropTypes.func,
+  fetchCurrentPost: PropTypes.func,
   currentChannel: PropTypes.object
 }
 
@@ -44,6 +44,6 @@ const mapState = state => ({
   currentChannel: state.currentChannel
 })
 
-const mapDispatch = { getPosts, setCurrentPost }
+const mapDispatch = { getPosts, fetchCurrentPost }
 
 export default connect(mapState, mapDispatch)(Feed)
