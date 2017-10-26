@@ -5,9 +5,9 @@ export default function FeedEntryList ({ entries }) {
     <div>
       {entries.map((entry, index) => {
         return (
-          <div className='post' key={index}>
-            <a href={entry.link}>{entry.title}</a>
-          </div>
+          <a href={entry.link} key={index}>
+            <div className='post'>{entry.title}</div>
+          </a>
         )
       })}
     </div>

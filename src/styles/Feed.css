@@ -3,3 +3,7 @@
   height: 40px;
   border: 1px solid grey;
 }
+
+.post:hover {
+  background-color: rgb(220, 220, 220);
+}

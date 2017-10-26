@@ -8,7 +8,13 @@ import FeedEntryList from '../components/FeedEntryList'
 
 class Feed extends Component {
   componentDidMount () {
-    this.props.getPosts('http://www.reddit.com/.rss')
+    this.props.getPosts(this.props.currentChannel.url)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.currentChannel.url !== this.props.currentChannel.url) {
+      this.props.getPosts(nextProps.currentChannel.url)
+    }
   }
 
   render () {
@@ -23,11 +29,13 @@ class Feed extends Component {
 
 Feed.propTypes = {
   posts: PropTypes.array,
-  getPosts: PropTypes.func
+  getPosts: PropTypes.func,
+  currentChannel: PropTypes.object
 }
 
 const mapState = state => ({
-  posts: state.posts
+  posts: state.posts,
+  currentChannel: state.currentChannel
 })
 
 const mapDispatch = { getPosts }
