@@ -4,11 +4,7 @@ export function setCurrentChannel (channel) {
   return { type: SET_CURRENT_CHANNEL, channel }
 }
 
-const initialState = {
-  id: 0,
-  name: 'Reddit',
-  url: 'http://www.reddit.com/.rss'
-}
+const initialState = {}
 
 export default function reducerCurrentChannel (state = initialState, action) {
   switch (action.type) {

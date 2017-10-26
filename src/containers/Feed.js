@@ -8,7 +8,8 @@ import FeedEntryList from '../components/FeedEntryList'
 
 class Feed extends Component {
   componentDidMount () {
-    this.props.getPosts(this.props.currentChannel.url)
+    this.props.currentChannel.url &&
+      this.props.getPosts(this.props.currentChannel.url)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -20,7 +21,7 @@ class Feed extends Component {
   render () {
     const { posts } = this.props
     return (
-      <div className='App-main'>
+      <div className='App-feed'>
         {posts.length ? <FeedEntryList entries={posts} /> : <h3>Loading...</h3>}
       </div>
     )

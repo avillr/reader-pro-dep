@@ -1,27 +1,32 @@
 .App {
   display: flex;
+  height: 100vh;
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 .App-sidebar {
-  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #222;
-  height: 100vh;
+  height: calc(100vh - 40px);
   width: 100px;
   padding: 20px;
   color: white;
 }
-.App-main {
+.App-feed {
   display: flex;
   flex-direction: column;
-  padding-left: 140px;
-  width: 100%;
+  width: 300px;
+  overflow: auto;
 }
 .App-title {
   font-size: 1.5em;
+}
+
+.App-reader {
+  width: 100%;
+  height: 100%;
 }

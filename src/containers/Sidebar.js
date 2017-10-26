@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withRouter, NavLink } from 'react-router-dom'
 
-import logo from '../images/logo.svg'
 import { setCurrentChannel } from '../store'
 import '../styles/Sidebar.css'
 
@@ -12,7 +11,6 @@ class Sidebar extends Component {
     const { channels, setCurrentChannel } = this.props
     return (
       <div className='App-sidebar'>
-        <img src={logo} className='App-logo' alt='logo' />
         <h1 className='App-title'>Reader</h1>
         <div className='sidebar-channel'>All</div>
         <hr />
