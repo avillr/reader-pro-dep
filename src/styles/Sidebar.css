@@ -5,3 +5,16 @@
 .App-sidebar > hr {
   width: 80px;
 }
+
+.sidebar-channel {
+  padding: 10px 0;
+}
+.sidebar-channel:hover {
+  color: grey;
+}
+.sidebar-channel:active {
+  color: rgb(99, 98, 98);
+}
+.sidebar-channel.active {
+  color: rgb(132, 175, 255);
+}

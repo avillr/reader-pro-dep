@@ -18,7 +18,6 @@ export default function reducerPosts (state = [], action) {
 export function getPosts (url) {
   return function thunk (dispatch) {
     const proxyurl = 'https://cors-anywhere.herokuapp.com/'
-    console.log('feed url: ', url)
     parser.parseURL(proxyurl + url, (err, parsed) => {
       if (err) console.error(err)
       else {
@@ -31,7 +30,6 @@ export function getPosts (url) {
             link: entry.link
           })
         )
-        console.log('all posts: ', posts)
         dispatch(setPosts(posts))
       }
     })
