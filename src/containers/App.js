@@ -11,7 +11,7 @@ class App extends Component {
       <div className='App'>
         <Sidebar />
         <Feed />
-        <Reader src='http://plnkr.co/' height='100%' width='100%' />
+        <Reader />
       </div>
     )
   }

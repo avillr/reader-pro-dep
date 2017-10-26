@@ -1,13 +1,18 @@
 import React from 'react'
 
-export default function FeedEntryList ({ entries }) {
+export default function FeedEntryList ({ posts, setCurrentPost }) {
   return (
     <div>
-      {entries.map((entry, index) => {
+      {posts.map((post, index) => {
+        console.log(post)
         return (
-          <a href={entry.link} key={index}>
-            <div className='post'>{entry.title}</div>
-          </a>
+          <div
+            className='post'
+            key={index}
+            onClick={() => setCurrentPost(post.link)}
+          >
+            {post.title}
+          </div>
         )
       })}
     </div>
