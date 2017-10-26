@@ -12,21 +12,25 @@
   align-items: center;
   background-color: #222;
   height: calc(100vh - 40px);
-  width: 140px;
+  width: 160px;
   padding: 20px;
   color: white;
 }
 .App-feed {
   display: flex;
   flex-direction: column;
-  width: 300px;
   overflow: auto;
+  width: 250px;
 }
 .App-title {
   font-size: 1.5em;
 }
 
 .App-reader {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   height: 100%;
+  padding: 0 50px;
+  overflow: auto;
 }

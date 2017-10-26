@@ -8,7 +8,11 @@ export default function FeedEntryList ({ posts, fetchCurrentPost }) {
           <div
             className='post'
             key={index}
-            onClick={() => fetchCurrentPost(post.link)}
+            onClick={evt => {
+              console.log(evt.target)
+              evt.target.after(<div>YOYOYOY</div>)
+              fetchCurrentPost(post.link)
+            }}
           >
             {post.title}
           </div>

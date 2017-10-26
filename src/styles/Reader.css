@@ -1,0 +1,17 @@
+.App-reader {
+  font-family: 'Garamond', 'Georgia', 'serif';
+  line-height: 28px;
+}
+
+.App-reader h1 {
+  line-height: 1.2em;
+}
+
+.App-reader img {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.App-reader a {
+  text-decoration: underline;
+}
