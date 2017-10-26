@@ -10,21 +10,101 @@ export function removeChannel (url) {
 }
 
 const initialState = [
-  { id: 0, name: 'Reddit Tech', url: 'http://www.reddit.com/r/technology.rss' },
   {
-    id: 1,
-    name: 'Product Hunt',
-    url: 'https://www.producthunt.com/feed?category=tech'
+    id: 'ars-technica',
+    name: 'Ars Technica',
+    description:
+      "The PC enthusiast's resource. Power users and the tools they love, without computing religion.",
+    url: 'http://arstechnica.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
   },
   {
-    id: 2,
+    id: 'engadget',
+    name: 'Engadget',
+    description:
+      'Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics.',
+    url: 'https://www.engadget.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
+  },
+  {
+    id: 'hacker-news',
     name: 'Hacker News',
-    url: 'http://news.ycombinator.com/rss'
+    description:
+      'Hacker News is a social news website focusing on computer science and entrepreneurship. It is run by Paul Graham\'s investment fund and startup incubator, Y Combinator. In general, content that can be submitted is defined as "anything that gratifies one\'s intellectual curiosity".',
+    url: 'https://news.ycombinator.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
   },
   {
-    id: 3,
-    name: 'Wired',
-    url: 'https://www.wired.com/feed/rss'
+    id: 'recode',
+    name: 'Recode',
+    description:
+      'Get the latest independent tech news, reviews and analysis from Recode with the most informed and respected journalists in technology and media.',
+    url: 'http://www.recode.net',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top']
+  },
+  {
+    id: 'techcrunch',
+    name: 'TechCrunch',
+    description:
+      'TechCrunch is a leading technology media property, dedicated to obsessively profiling startups, reviewing new Internet products, and breaking tech news.',
+    url: 'https://techcrunch.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
+  },
+  {
+    id: 'the-verge',
+    name: 'The Verge',
+    description:
+      'The Verge covers the intersection of technology, science, art, and culture.',
+    url: 'http://www.theverge.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
   }
 ]
 

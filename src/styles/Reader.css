@@ -15,3 +15,7 @@
 .App-reader a {
   text-decoration: underline;
 }
+
+.App-reader iframe {
+  margin-left: 40px;
+}

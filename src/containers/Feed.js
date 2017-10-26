@@ -8,13 +8,13 @@ import FeedEntryList from '../components/FeedEntryList'
 
 class Feed extends Component {
   componentDidMount () {
-    this.props.currentChannel.url &&
-      this.props.getPosts(this.props.currentChannel.url)
+    this.props.currentChannel.id &&
+      this.props.getPosts(this.props.currentChannel.id)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.currentChannel.url !== this.props.currentChannel.url) {
-      this.props.getPosts(nextProps.currentChannel.url)
+    if (nextProps.currentChannel.id !== this.props.currentChannel.id) {
+      this.props.getPosts(nextProps.currentChannel.id)
     }
   }
 

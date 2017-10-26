@@ -10,7 +10,6 @@ export default function FeedEntryList ({ posts, fetchCurrentPost }) {
             key={index}
             onClick={evt => {
               console.log(evt.target)
-              evt.target.after(<div>YOYOYOY</div>)
               fetchCurrentPost(post.link)
             }}
           >

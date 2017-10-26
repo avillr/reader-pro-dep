@@ -11,7 +11,7 @@ class Reader extends Component {
     return (
       <div className='App-reader'>
         <h1>{data.title}</h1>
-        <img className='lead-image' src={data.lead_image_url} />
+        <img className='lead-image' alt='' src={data.lead_image_url} />
         <div dangerouslySetInnerHTML={{ __html: data.content }} />
       </div>
     )
