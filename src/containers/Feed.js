@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { getPosts } from '../store'
 
+import '../styles/Feed.css'
+import { getPosts } from '../store'
 import FeedEntryList from '../components/FeedEntryList'
 
 class Feed extends Component {
