@@ -11,7 +11,7 @@ class Sidebar extends Component {
     return (
       <div className='App-sidebar'>
         <h1 className='App-title'>Reader</h1>
-        <NavLink to={`/recode`} className='sidebar-channel'>
+        <NavLink to={`/index`} className='sidebar-channel'>
           Index
         </NavLink>
         <hr />

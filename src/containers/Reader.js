@@ -5,26 +5,26 @@ import { withRouter } from 'react-router-dom'
 import '../styles/Reader.css'
 
 import { fetchCurrentPost } from '../store'
-import ReaderDisplay from '../components/ReaderDisplay'
 
 class Reader extends Component {
-  componentDidMount () {
-    this.props.fetchCurrentPost(this.props.match.params.post)
-  }
   componentWillReceiveProps (nextProps) {
-    console.log(this.props.match.params.post)
-    if (this.props.match.params.post !== nextProps.match.params.post) {
-      this.props.fetchCurrentPost(this.props.match.params.post)
+    if (this.props.post.active !== nextProps.post.active) {
+      console.log(nextProps)
     }
   }
-
   render () {
-    const { post } = this.props.match.params
-    if (!post) return null
+    const post = this.props.post
     console.log('in reader: ', post)
-    const avgReadWpm = 250
-    const readTime = Math.round(post.word_count / avgReadWpm)
-    return <ReaderDisplay post={post} readTime={readTime} />
+    // const avgReadWpm = 250
+    // const readTime = Math.round(post.word_count / avgReadWpm)
+    return (
+      <div>
+        <h3>
+          <a href={post.url}>{post.title}</a>
+        </h3>
+        {/* <div dangerouslySetInnerHTML={{ __html: post.content }} /> */}
+      </div>
+    )
   }
 }
 
@@ -32,10 +32,6 @@ Reader.propTypes = {
   post: PropTypes.object
 }
 
-const mapState = state => ({
-  post: state.currentPost
-})
-
 const mapDispatch = { fetchCurrentPost }
 
-export default withRouter(connect(mapState, mapDispatch)(Reader))
+export default withRouter(connect(null, mapDispatch)(Reader))

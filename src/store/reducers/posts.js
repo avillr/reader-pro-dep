@@ -29,6 +29,13 @@ export function getPosts (id) {
       })
       .then(res => res.data)
       .then(data => {
+        data.articles.forEach((article, index) => {
+          article.id = index
+          article.source = data.source
+          article.active = false
+          article.parsedContent = null
+        })
+        console.log(data)
         dispatch(setPosts(data.articles))
       })
   }
