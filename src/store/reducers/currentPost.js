@@ -25,7 +25,8 @@ export function fetchCurrentPost (url) {
           'x-api-key': 'UG7xoJRskI1NiXl8p5tx0RY8ipW9lsepbcAlssug'
         }
       })
-      .then(data => dispatch(setCurrentPost(data)))
+      .then(res => res.data)
+      .then(post => dispatch(setCurrentPost(post)))
       .catch(console.error)
   }
 }

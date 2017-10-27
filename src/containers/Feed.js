@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import '../styles/Feed.css'
-import { getPosts, fetchCurrentPost } from '../store'
+import { getPosts, fetchCurrentPost, setCurrentChannel } from '../store'
 import FeedEntryList from '../components/FeedEntryList'
 
 class Feed extends Component {
   componentDidMount () {
-    this.props.currentChannel.id &&
-      this.props.getPosts(this.props.currentChannel.id)
+    this.props.setCurrentChannel(this.props.match.params.feed)
+    this.props.getPosts(this.props.match.params.feed)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.currentChannel.id !== this.props.currentChannel.id) {
-      this.props.getPosts(nextProps.currentChannel.id)
+    if (this.props.match.params.feed !== nextProps.match.params.feed) {
+      this.props.setCurrentChannel(this.props.match.params.feed)
+      this.props.getPosts(this.props.match.params.feed)
     }
   }
 
@@ -35,8 +37,7 @@ class Feed extends Component {
 Feed.propTypes = {
   posts: PropTypes.array,
   getPosts: PropTypes.func,
-  fetchCurrentPost: PropTypes.func,
-  currentChannel: PropTypes.object
+  fetchCurrentPost: PropTypes.func
 }
 
 const mapState = state => ({
@@ -44,6 +45,6 @@ const mapState = state => ({
   currentChannel: state.currentChannel
 })
 
-const mapDispatch = { getPosts, fetchCurrentPost }
+const mapDispatch = { getPosts, fetchCurrentPost, setCurrentChannel }
 
-export default connect(mapState, mapDispatch)(Feed)
+export default withRouter(connect(mapState, mapDispatch)(Feed))

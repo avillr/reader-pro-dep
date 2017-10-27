@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import '../styles/App.css'
 
 import Sidebar from './Sidebar'
@@ -10,8 +11,8 @@ class App extends Component {
     return (
       <div className='App'>
         <Sidebar />
-        <Feed />
-        <Reader />
+        <Route path='/:feed' component={Feed} />
+        <Reader path='/:feed/:post' component={Reader} />
       </div>
     )
   }

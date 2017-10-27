@@ -1,19 +1,15 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
-export default function FeedEntryList ({ posts, fetchCurrentPost }) {
+export default function FeedEntryList ({ posts }) {
   return (
     <div>
       {posts.map((post, index) => {
         return (
-          <div
-            className='post'
-            key={index}
-            onClick={evt => {
-              console.log(evt.target)
-              fetchCurrentPost(post.url)
-            }}
-          >
-            {post.title}
+          <div className='post' key={index}>
+            <NavLink to={`${window.location.pathname}/${post.title}`}>
+              {post.title}
+            </NavLink>
           </div>
         )
       })}
