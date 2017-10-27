@@ -8,6 +8,24 @@
 }
 
 .App-reader img {
+  display: block;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.App-reader p > img {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.App-reader video {
+  display: block;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.App-reader iframe {
+  display: block;
   max-width: 90%;
   margin: 0 auto;
 }
@@ -15,7 +33,10 @@
 .App-reader a {
   text-decoration: underline;
 }
+.App-reader h1 a {
+  text-decoration: none;
+}
 
-.App-reader iframe {
-  margin-left: 40px;
+.App-reader code {
+  width: 100%;
 }

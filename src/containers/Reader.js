@@ -8,10 +8,18 @@ class Reader extends Component {
     const { data } = this.props.post
     if (!data) return null
     console.log('in reader: ', data)
+    const avgReadWpm = 250
+    const readTime = Math.round(data.word_count / avgReadWpm)
     return (
       <div className='App-reader'>
-        <h1>{data.title}</h1>
-        <img className='lead-image' alt='' src={data.lead_image_url} />
+        <h1>
+          <a href={data.url}>{data.title}</a>
+        </h1>
+        <div>
+          <h3>
+            {data.author} - {readTime} min read
+          </h3>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: data.content }} />
       </div>
     )

@@ -10,7 +10,7 @@ export default function FeedEntryList ({ posts, fetchCurrentPost }) {
             key={index}
             onClick={evt => {
               console.log(evt.target)
-              fetchCurrentPost(post.link)
+              fetchCurrentPost(post.url)
             }}
           >
             {post.title}

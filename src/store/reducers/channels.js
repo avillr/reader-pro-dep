@@ -27,22 +27,6 @@ const initialState = [
     sortBysAvailable: ['top', 'latest']
   },
   {
-    id: 'engadget',
-    name: 'Engadget',
-    description:
-      'Engadget is a web magazine with obsessive daily coverage of everything new in gadgets and consumer electronics.',
-    url: 'https://www.engadget.com',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: {
-      small: '',
-      medium: '',
-      large: ''
-    },
-    sortBysAvailable: ['top', 'latest']
-  },
-  {
     id: 'hacker-news',
     name: 'Hacker News',
     description:
