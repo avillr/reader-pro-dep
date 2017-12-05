@@ -1,35 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, NavLink } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
-import '../styles/Feed.css'
-import { getPosts, setCurrentPost, setCurrentChannel } from '../store'
-import Reader from '../containers/Reader'
+import './Feed.css'
+import { components, store } from '../components.js'
 
 class Feed extends Component {
   componentDidMount () {
     const feed = this.props.match.params.feed
-    this.props.setCurrentChannel(feed)
     this.props.getPosts(feed)
   }
 
   componentWillReceiveProps (nextProps) {
     const feed = this.props.match.params.feed
     if (feed !== nextProps.match.params.feed) {
-      this.props.setCurrentChannel(feed)
       this.props.getPosts(feed)
     }
   }
 
   render () {
-    const { posts, fetchCurrentPost } = this.props
+    const { posts } = this.props
     return (
       <div className='App-feed'>
         {posts.length && (
           <div>
             {posts.map((post, index) => {
-              return <Reader post={post} />
+              return <components.Reader post={post} />
             })}
           </div>
         )}
@@ -38,17 +34,10 @@ class Feed extends Component {
   }
 }
 
-Feed.propTypes = {
-  posts: PropTypes.array,
-  getPosts: PropTypes.func,
-  fetchCurrentPost: PropTypes.func
-}
-
 const mapState = state => ({
-  posts: state.posts,
-  currentChannel: state.currentChannel
+  posts: state.posts
 })
 
-const mapDispatch = { getPosts, setCurrentPost, setCurrentChannel }
+const mapDispatch = { getPosts, setCurrentPost }
 
 export default withRouter(connect(mapState, mapDispatch)(Feed))

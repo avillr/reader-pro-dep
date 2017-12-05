@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import '../styles/App.css'
+import './App.css'
 
-import Sidebar from './Sidebar'
-import Feed from './Feed'
+import { components } from '../components.js'
 
 class App extends Component {
   render () {
     return (
       <div className='App'>
-        <Sidebar />
-        <Route path='/:feed' component={Feed} />
+        <components.Sidebar />
+        <Route path='/:feed' component={components.Feed} />
       </div>
     )
   }

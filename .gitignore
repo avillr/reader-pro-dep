@@ -9,6 +9,9 @@
 # production
 /build
 
+# shh
+secrets.js
+
 # misc
 .DS_Store
 .env.local

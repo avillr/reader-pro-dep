@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { withRouter, NavLink } from 'react-router-dom'
 
-import '../styles/Sidebar.css'
+import './Sidebar.css'
 
 class Sidebar extends Component {
   render () {
@@ -30,10 +29,6 @@ class Sidebar extends Component {
       </div>
     )
   }
-}
-
-Sidebar.propTypes = {
-  channels: PropTypes.array
 }
 
 const mapState = state => ({

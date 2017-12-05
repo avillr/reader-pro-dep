@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import '../styles/Reader.css'
+import './Reader.css'
 
 import { fetchCurrentPost } from '../store'
 

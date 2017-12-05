@@ -1,28 +1,54 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { createBrowserHistory } from 'history'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
 
-import posts from './reducers/posts'
-import channels from './reducers/channels'
-import currentPost from './reducers/currentPost'
-import currentChannel from './reducers/currentChannel'
+// Import everything from each container (component, action, reducer)
+import * as App from './App'
+import * as Feed from './Feed'
+import * as Reader from './Reader'
+import * as Sidebar from './Sidebar'
+const containers = {
+  App,
+  Feed,
+  Reader,
+  Sidebar
+}
 
-const reducer = combineReducers({
-  posts,
-  channels,
-  currentPost,
-  currentChannel
+// Grab the reducer and component from each container
+let reducers = {}
+const components = {}
+Object.keys(containers).forEach(key => {
+  components[key] = containers[key].component
+  if (containers[key].reducer) reducers[key] = containers[key].reducer
 })
 
+// Combine reducers
+reducers = combineReducers(reducers)
+
+// Start history
+const history = createBrowserHistory()
+
+// Merge middlewares
+let middlewares = [routerMiddleware(history), thunkMiddleware]
+
+// Development adds logging, must be last
+if (process.env.NODE_ENV !== 'production') {
+  middlewares.push(
+    createLogger({
+      duration: true,
+      collapsed: true
+    })
+  )
+}
+
+// Generate store
 const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger()))
+  connectRouter(history)(reducers),
+  composeWithDevTools(applyMiddleware(...middlewares))
 )
 
-export default store
-
-export * from './reducers/posts'
-export * from './reducers/channels'
-export * from './reducers/currentPost'
-export * from './reducers/currentChannel'
+// Export all the separate modules
+export { components, history, store }
