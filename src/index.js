@@ -1,18 +1,33 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { ConnectedRouter } from 'connected-react-router'
 
 import './styles/index.css'
-import store from './store'
-import App from './containers/App'
+
+// Grab all components dynamically
+import { components, history, store } from './components/components.js'
 import registerServiceWorker from './utils/registerServiceWorker'
+
+// Initialize Firebase Application
+// const config = {
+//   apiKey:
+//     process.env.FIREBASE_API_KEY || process.env.REACT_APP_FIREBASE_API_KEY,
+//   messagingSenderId:
+//     process.env.FIREBASE_MESSAGING_SENDER_ID ||
+//     process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+//   projectId: 'boilerplate-pro',
+//   storageBucket: 'boilerplate-pro.appspot.com',
+//   authDomain: 'boilerplate-pro.firebaseapp.com',
+//   databaseURL: 'https://boilerplate-pro.firebaseio.com'
+// }
+// firebase.initializeApp(config)
 
 render(
   <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
+    <ConnectedRouter history={history}>
+      <components.App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 )
