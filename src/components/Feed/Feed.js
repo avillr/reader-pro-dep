@@ -38,6 +38,6 @@ const mapState = state => ({
   posts: state.posts
 })
 
-const mapDispatch = { getPosts, setCurrentPost }
+// const mapDispatch = { getPosts, setCurrentPost }
 
-export default withRouter(connect(mapState, mapDispatch)(Feed))
+export default withRouter(connect(mapState)(Feed))

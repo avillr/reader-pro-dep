@@ -20,10 +20,10 @@ const containers = {
 // Grab the reducer and component from each container
 let reducers = {}
 const components = {}
-Object.keys(containers).forEach(key => {
+for (let key in containers) {
   components[key] = containers[key].component
   if (containers[key].reducer) reducers[key] = containers[key].reducer
-})
+}
 
 // Combine reducers
 reducers = combineReducers(reducers)

@@ -3,7 +3,6 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { BrowserRouter } from 'react-router-dom'
-import firebase from 'firebase'
 
 // Stylesheets
 import './index.css'
@@ -13,8 +12,9 @@ import { components, history, store } from './components/components.js'
 import registerServiceWorker from './utils/registerServiceWorker'
 
 // Initialize Firebase Application
-import { config } from './utils/secrets.js'
-firebase.initializeApp(config)
+import firebase from 'firebase'
+import { firebaseConfig } from './utils/secrets.js'
+firebase.initializeApp(firebaseConfig)
 
 render(
   <Provider store={store}>

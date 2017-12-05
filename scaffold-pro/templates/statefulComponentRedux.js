@@ -3,14 +3,16 @@ import { connect } from 'react-redux'
 
 import { actions } from './index.js'
 
-const mapStateToProps = (state) => { return {
+const mapState = (state) => ({
   ...state.{{ComponentName}}
-} }
-const mapDispatchToProps = (dispatch) => { return {
+})
+
+const mapDispatch = (dispatch) => ({
   dummyAction: () => {
-    dispatch( actions.dummyAction() )
+    dispatch(actions.dummyAction())
   }
-} }
+})
+
 class {{ComponentName}} extends Component {
   constructor( props ) {
     super( props )
@@ -22,6 +24,6 @@ class {{ComponentName}} extends Component {
   }
 }
 
-{{ComponentName}} = connect(mapStateToProps, mapDispatchToProps)({{ComponentName}})
+{{ComponentName}} = connect(mapState, mapDispatch)({{ComponentName}})
 
 export default {{ComponentName}}

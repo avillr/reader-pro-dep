@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import './Sidebar.css'
 
+const mapState = state => ({
+  ...state.Sidebar
+})
+
 class Sidebar extends Component {
   render () {
-    const { channels } = this.props
     return (
       <div className='App-sidebar'>
         <h1 className='App-title'>Reader</h1>
@@ -14,7 +17,7 @@ class Sidebar extends Component {
           Index
         </NavLink>
         <hr />
-        {channels.map(channel => (
+        {this.props.channels.map(channel => (
           <NavLink
             key={channel.id}
             to={`/${channel.id}`}
@@ -31,8 +34,4 @@ class Sidebar extends Component {
   }
 }
 
-const mapState = state => ({
-  channels: state.channels
-})
-
-export default withRouter(connect(mapState)(Sidebar))
+export default connect(mapState)(Sidebar)

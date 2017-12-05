@@ -1,20 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import { actions } from './index.js';
+import { actions } from './index.js'
 
-const mapStateToProps = (state) => {
-  return {
-    ...state.{{ComponentName}}
+const mapState = (state) => ({
+  ...state.{{ComponentName}}
+})
+
+const mapDispatch = (dispatch) => ({
+  dummyAction: () => {
+    dispatch( actions.dummyAction() )
   }
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dummyAction: () => {
-      dispatch( actions.dummyAction() )
-    }
-  }
-}
+})
 
 const {{ComponentName}} = () => {
   return (
@@ -22,6 +19,6 @@ const {{ComponentName}} = () => {
   )
 }
 
-const connected{{ComponentName}} = connect(mapStateToProps, mapDispatchToProps)({{ComponentName}})
+const connected{{ComponentName}} = connect(mapState, mapDispatch)({{ComponentName}})
 
 export default connected{{ComponentName}}
