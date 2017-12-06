@@ -3,7 +3,17 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import './Feed.css'
-import { components, store } from '../components.js'
+import { actions } from './index.js'
+import { components } from '../components.js'
+
+const mapState = state => ({
+  ...state.Feed
+})
+const mapDispatch = dispatch => ({
+  getPosts: feed => {
+    dispatch(actions.getPosts(feed))
+  }
+})
 
 class Feed extends Component {
   componentDidMount () {
@@ -11,21 +21,15 @@ class Feed extends Component {
     this.props.getPosts(feed)
   }
 
-  componentWillReceiveProps (nextProps) {
-    const feed = this.props.match.params.feed
-    if (feed !== nextProps.match.params.feed) {
-      this.props.getPosts(feed)
-    }
-  }
-
   render () {
+    console.log(this.props)
     const { posts } = this.props
     return (
       <div className='App-feed'>
         {posts.length && (
           <div>
             {posts.map((post, index) => {
-              return <components.Reader post={post} />
+              return <components.Reader key={post.id} post={post} />
             })}
           </div>
         )}
@@ -34,10 +38,4 @@ class Feed extends Component {
   }
 }
 
-const mapState = state => ({
-  posts: state.posts
-})
-
-// const mapDispatch = { getPosts, setCurrentPost }
-
-export default withRouter(connect(mapState)(Feed))
+export default withRouter(connect(mapState, mapDispatch)(Feed))

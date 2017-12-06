@@ -1,13 +1,9 @@
 // Include component
 import component from './Sidebar.js'
 
-// Init reduxHelper
-import reduxHelper from '../../utils/reduxHelper.js'
-const reduxUtil = reduxHelper('Sidebar')
-
 // Action Definitions
-const ADD_CHANNEL = reduxUtil.defineAction('ADD_CHANNEL')
-const REMOVE_CHANNEL = reduxUtil.defineAction('REMOVE_CHANNEL')
+const ADD_CHANNEL = 'ADD_CHANNEL'
+const REMOVE_CHANNEL = 'REMOVE_CHANNEL'
 
 // Initial State
 const initialState = {
@@ -97,22 +93,21 @@ const initialState = {
 
 // Make Actions
 const actions = {
-  addChannel: reduxUtil.createAction(ADD_CHANNEL),
-  removeChannel: reduxUtil.createAction(REMOVE_CHANNEL)
+  addChannel: payload => ({ type: ADD_CHANNEL, payload }),
+  removeChannel: payload => ({ type: REMOVE_CHANNEL, payload })
 }
 
-// Make reducer
-const reducer = reduxUtil.createReducer(
-  {
-    [ADD_CHANNEL]: (state, action) => {
+// Make Reducer
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_CHANNEL:
       return { ...state, ...action.payload }
-    },
-    [REMOVE_CHANNEL]: (state, action) => {
+    case REMOVE_CHANNEL:
       return { ...state, ...action.payload }
-    }
-  },
-  initialState
-)
+    default:
+      return state
+  }
+}
 
 // Export
 export { component, actions, reducer }

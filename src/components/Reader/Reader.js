@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import './Reader.css'
 
-// import { fetchCurrentPost } from '../store'
+import { actions } from './index.js'
+
+const mapState = state => ({
+  ...state.Reader
+})
+const mapDispatch = dispatch => ({
+  fetchCurrentPost: url => {
+    dispatch(actions.fetchCurrentPost(url))
+  }
+})
 
 class Reader extends Component {
   componentWillReceiveProps (nextProps) {
@@ -28,10 +36,4 @@ class Reader extends Component {
   }
 }
 
-Reader.propTypes = {
-  post: PropTypes.object
-}
-
-// const mapDispatch = { fetchCurrentPost }
-
-export default withRouter(connect(null, null)(Reader))
+export default withRouter(connect(mapState, mapDispatch)(Reader))

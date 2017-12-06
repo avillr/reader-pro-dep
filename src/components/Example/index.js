@@ -1,12 +1,8 @@
 // Include component
 import component from './Example.js'
 
-// Init reduxHelper
-import reduxHelper from '../../utils/reduxHelper.js'
-const reduxUtil = reduxHelper('Example')
-
 // Action Definitions
-const DUMMY_ACTION = reduxUtil.defineAction('DUMMY_ACTION')
+const DUMMY_ACTION = 'DUMMY_ACTION'
 
 // Initial State
 const initialState = {
@@ -15,20 +11,22 @@ const initialState = {
 
 // Make Actions
 const actions = {
-  dummyAction: reduxUtil.createAction(DUMMY_ACTION)
+  dummyAction: payload => ({ type: DUMMY_ACTION, payload }),
+  dummyThunkAction: payload => dispatch => {
+    // async function here
+    dispatch(actions.dummyAction(payload))
+  }
 }
 
-// Make reducer
-const reducer = reduxUtil.createReducer(
-  {
-    [DUMMY_ACTION]: (state, action) => {
-      let newState = { ...state, ...action.payload }
-      newState.dummyState = true
-      return newState
-    }
-  },
-  initialState
-)
+// Make Reducer
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case DUMMY_ACTION:
+      return { ...state, ...action.payload }
+    default:
+      return state
+  }
+}
 
 // Export
 export { component, actions, reducer }
