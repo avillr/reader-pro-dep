@@ -1,7 +1,7 @@
-##Reader
+## Reader
 This is a react web application that collects, organizes, and presents different tech news sources.
 
-##Data Flow
+## Data Flow
 Generally the flow of data will begin from the channel/feed/source picker in the sidebar.
 
 The options are navlinks that modify the url and conditionally render the feed for a
