@@ -35,6 +35,18 @@ const createApp = () => {
   // compression middleware
   app.use(compression())
 
+  // session middleware with passport
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET || 'most secret secret ever',
+      store: sessionStore,
+      resave: false,
+      saveUninitialized: false
+    })
+  )
+  app.use(passport.initialize())
+  app.use(passport.session())
+
   // api routes
   app.use('/api', require('./api'))
 
