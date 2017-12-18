@@ -22,14 +22,13 @@ class Feed extends Component {
   }
 
   render () {
-    console.log(this.props)
     const { posts } = this.props
     return (
       <div className='App-feed'>
         {posts.length && (
           <div>
             {posts.map((post, index) => {
-              return <components.Reader key={post.id} post={post} />
+              return <components.Reader key={index} post={post} />
             })}
           </div>
         )}

@@ -7,4 +7,4 @@ const Post = db.define('post', {
   }
 })
 
-module.exports = { Post }
+module.exports = Post

@@ -7,4 +7,4 @@ const Channel = db.define('channel', {
   }
 })
 
-module.exports = { Channel }
+module.exports = Channel
