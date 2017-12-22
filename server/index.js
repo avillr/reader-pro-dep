@@ -1,13 +1,11 @@
 const path = require('path')
 const express = require('express')
-const session = require('express-session')
 const passport = require('passport')
-const volleyball = require('volleyball')
 const bodyParser = require('body-parser')
+const PrettyError = require('pretty-error')
 const compression = require('compression')
 const db = require('./db')
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const sessionStore = new SequelizeStore({ db })
+
 const app = express()
 
 const PORT = process.env.PORT || 8080
@@ -26,7 +24,16 @@ passport.deserializeUser((id, done) =>
 
 const createApp = () => {
   // logging middleware
-  app.use(volleyball)
+  if (process.env.NODE_ENV === 'development') app.use(require('volleyball'))
+
+  // Pretty error prints errors all pretty.
+  const prettyError = new PrettyError()
+
+  // Skip events.js and http.js and similar core node files.
+  prettyError.skipNodeFiles()
+
+  // Skip all the trace lines about express' core and sub-modules.
+  prettyError.skipPackage('express')
 
   // body parsing middleware
   app.use(bodyParser.json())
@@ -37,11 +44,9 @@ const createApp = () => {
 
   // session middleware with passport
   app.use(
-    session({
-      secret: process.env.SESSION_SECRET || 'most secret secret ever',
-      store: sessionStore,
-      resave: false,
-      saveUninitialized: false
+    require('cookie-session')({
+      name: 'session',
+      keys: [process.env.SESSION_SECRET || 'an insecure secret key']
     })
   )
   app.use(passport.initialize())
@@ -51,11 +56,11 @@ const createApp = () => {
   app.use('/api', require('./api'))
 
   // static file serving
-  app.use(express.static(path.join(__dirname, '..', 'public')))
+  app.use(express.static(path.join(__dirname, '..', 'build')))
 
   // send index.html (for front end routing)
   app.use('*', (_, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+    res.sendFile(path.join(__dirname, '..', 'build/index.html'))
   })
 
   // error handling
