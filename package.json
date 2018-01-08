@@ -6,6 +6,7 @@
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
     "connected-react-router": "^4.3.0",
+    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
     "normalize.css": "^7.0.0",
     "passport": "^0.4.0",
@@ -25,7 +26,7 @@
     "volleyball": "^1.4.1"
   },
   "scripts": {
-    "start": "node server",
+    "start": "node server/start.js",
     "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

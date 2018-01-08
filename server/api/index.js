@@ -1,13 +1,13 @@
-const api = require('express').Router()
+'use strict'
 
-api.use('/auth', require('./auth'))
-api.use('/posts', require('./posts'))
-api.use('/channels', require('./channels'))
+const api = (module.exports = require('express').Router())
 
-api.use((req, res, next) => {
-  const error = new Error('Not Found')
-  error.status = 404
-  next(error)
-})
+api
+  .get('/heartbeat', (req, res) => res.send({ ok: true }))
+  .use('/auth', require('./auth'))
+  .use('/users', require('./users'))
+  .use('/posts', require('./posts'))
+  .use('/channels', require('./channels'))
 
-module.exports = api
+// No routes matched? 404.
+api.use((req, res) => res.sendStatus(404))
