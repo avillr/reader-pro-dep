@@ -1,7 +1,6 @@
 'use strict'
 
-const db = require('../../db')
-const User = db.model('user')
+const { User } = require('../../db/models')
 
 const {mustBeLoggedIn, forbidden} = require('./auth.filters')
 

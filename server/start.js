@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const PrettyError = require('pretty-error')
 const compression = require('compression')
 
+const db = require('../../db')
+
 const app = express()
 
 const PORT = process.env.PORT || 8080
@@ -61,11 +63,13 @@ module.exports = app
 
 if (module === require.main) {
   // Start listening only if we're the main module.
-  const server = app.listen(PORT, () => {
-    console.log(`--- Started HTTP Server for Reader Pro ---`)
-    const { address, port } = server.address()
-    const host = address === '::' ? 'localhost' : address
-    const urlSafeHost = host.includes(':') ? `[${host}]` : host
-    console.log(`Listening on http://${urlSafeHost}:${port}`)
-  })
+  db.sync().then(() => {
+    const server = app.listen(PORT, () => {
+      console.log(`--- Started HTTP Server for Reader Pro ---`)
+      const { address, port } = server.address()
+      const host = address === '::' ? 'localhost' : address
+      const urlSafeHost = host.includes(':') ? `[${host}]` : host
+      console.log(`Listening on http://${urlSafeHost}:${port}`)
+    })
+  }
 }

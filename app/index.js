@@ -10,9 +10,6 @@ import './index.css'
 // Grab all components dynamically
 import { components, history, store } from './components/components.js'
 
-// Register Service Worker
-import registerServiceWorker from './utils/registerServiceWorker'
-
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>

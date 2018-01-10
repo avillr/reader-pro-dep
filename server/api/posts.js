@@ -1,5 +1,5 @@
 const api = require('express').Router()
-const { Post } = require('../db/models')
+const { Post } = require('../../db/models')
 
 // GET /api/posts
 api.get('/', (req, res, next) => {

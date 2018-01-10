@@ -1,5 +1,5 @@
 const api = require('express').Router()
-const User = require('../../models/user')
+const { User } = require('../../../db/models')
 
 api.use('/google', require('./google'))
 

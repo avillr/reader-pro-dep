@@ -1,7 +1,7 @@
 const api = require('express').Router()
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const User = require('../db/models/user')
+const { User } = require('../../../db/models')
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   console.log('Google client ID / secret not found. Skipping Google OAuth.')
@@ -9,7 +9,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   const googleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK
+    callbackURL: process.env.GOOGLE_CALLBACK,
   }
 
   const strategy = new GoogleStrategy(
@@ -25,10 +25,10 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
             foundUser
               ? done(null, foundUser)
               : User.create({
-                name,
-                email,
-                googleId
-              }).then(createdUser => done(null, createdUser))
+                  name,
+                  email,
+                  googleId,
+                }).then(createdUser => done(null, createdUser))
         )
         .catch(done)
     }
@@ -42,7 +42,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     '/callback',
     passport.authenticate('google', {
       successRedirect: '/',
-      failureRedirect: '/login'
+      failureRedirect: '/login',
     })
   )
 }

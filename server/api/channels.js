@@ -1,5 +1,5 @@
 const api = require('express').Router()
-const { Channel } = require('../db/models')
+const { Channel } = require('../../db/models')
 
 // GET /api/channels
 api.get('/', (req, res, next) => {
