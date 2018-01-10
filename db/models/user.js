@@ -23,9 +23,9 @@ const User = db.define('user', {
 /**
  * instanceMethods
  */
-User.prototype.correctPassword = function (candidatePwd) {
-  return User.encryptPassword(candidatePwd, this.salt) === this.password
-}
+// User.prototype.correctPassword = function (candidatePwd) {
+//   return User.encryptPassword(candidatePwd, this.salt) === this.password
+// }
 
 /**
  * classMethods

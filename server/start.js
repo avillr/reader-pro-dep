@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const PrettyError = require('pretty-error')
 const compression = require('compression')
 
-const db = require('../../db')
+const db = require('../db')
 
 const app = express()
 
@@ -71,5 +71,5 @@ if (module === require.main) {
       const urlSafeHost = host.includes(':') ? `[${host}]` : host
       console.log(`Listening on http://${urlSafeHost}:${port}`)
     })
-  }
+  })
 }
