@@ -1,6 +1,8 @@
 'use strict'
 
-const api = (module.exports = require('express').Router())
+// const api = (module.exports = require('express').Router())
+const api = require('express').Router()
+module.exports = api
 
 api
   .get('/heartbeat', (req, res) => res.send({ ok: true }))

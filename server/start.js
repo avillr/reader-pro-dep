@@ -44,7 +44,7 @@ module.exports = app
   .use(passport.session())
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
-  // Serve our api - ./api also requires in ../db, which syncs with our database
+  // Serve our api - ./api
   .use('/api', require('./api'))
   // any requests with an extension (.js, .css, etc.) turn into 404
   .use((req, res, next) => {

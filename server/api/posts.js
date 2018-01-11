@@ -53,3 +53,5 @@ api.delete('/:id', (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+
+module.exports = api
