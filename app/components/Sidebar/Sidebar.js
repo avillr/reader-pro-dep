@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import './Sidebar.css'
 
 const mapState = state => ({
-  ...state.Sidebar
+  ...state.App
 })
 
 class Sidebar extends Component {

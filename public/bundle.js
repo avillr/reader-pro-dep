@@ -15592,7 +15592,16 @@ exports.default = App;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.component = undefined;
+exports.reducer = exports.actions = exports.component = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+// Include component
+
+
+var _axios = __webpack_require__(47);
+
+var _axios2 = _interopRequireDefault(_axios);
 
 var _App = __webpack_require__(153);
 
@@ -15600,8 +15609,127 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Action Definitions
+var ADD_CHANNEL = 'ADD_CHANNEL';
+var REMOVE_CHANNEL = 'REMOVE_CHANNEL';
+var SET_CHANNELS = 'SET_CHANNELS';
+
+// Initial State
+var initialState = {
+  channels: [{
+    id: 'ars-technica',
+    name: 'Ars Technica',
+    description: "The PC enthusiast's resource. Power users and the tools they love, without computing religion.",
+    url: 'http://arstechnica.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
+  }, {
+    id: 'hacker-news',
+    name: 'Hacker News',
+    description: 'Hacker News is a social news website focusing on computer science and entrepreneurship. It is run by Paul Graham\'s investment fund and startup incubator, Y Combinator. In general, content that can be submitted is defined as "anything that gratifies one\'s intellectual curiosity".',
+    url: 'https://news.ycombinator.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
+  }, {
+    id: 'recode',
+    name: 'Recode',
+    description: 'Get the latest independent tech news, reviews and analysis from Recode with the most informed and respected journalists in technology and media.',
+    url: 'http://www.recode.net',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top']
+  }, {
+    id: 'techcrunch',
+    name: 'TechCrunch',
+    description: 'TechCrunch is a leading technology media property, dedicated to obsessively profiling startups, reviewing new Internet products, and breaking tech news.',
+    url: 'https://techcrunch.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
+  }, {
+    id: 'the-verge',
+    name: 'The Verge',
+    description: 'The Verge covers the intersection of technology, science, art, and culture.',
+    url: 'http://www.theverge.com',
+    category: 'technology',
+    language: 'en',
+    country: 'us',
+    urlsToLogos: {
+      small: '',
+      medium: '',
+      large: ''
+    },
+    sortBysAvailable: ['top', 'latest']
+  }]
+
+  // Make Actions
+};var actions = {
+  addChannel: function addChannel(payload) {
+    return { type: ADD_CHANNEL, payload: payload };
+  },
+  removeChannel: function removeChannel(payload) {
+    return { type: REMOVE_CHANNEL, payload: payload };
+  },
+  setChannels: function setChannels(payload) {
+    return { type: SET_CHANNELS, payload: payload };
+  },
+  fetchChannels: function fetchChannels() {
+    return function (dispatch) {
+      _axios2.default.get('/api/channels').then(function (res) {
+        return res.data;
+      }).then(function (channels) {
+        return dispatch(actions.setChannels({ channels: channels }));
+      }).catch(console.error);
+    };
+  }
+
+  // Make Reducer
+};var reducer = function reducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case ADD_CHANNEL:
+      return _extends({}, state, action.payload);
+    case REMOVE_CHANNEL:
+      return _extends({}, state, action.payload);
+    case SET_CHANNELS:
+      return _extends({}, state, action.payload);
+    default:
+      return state;
+  }
+};
+
 // Export
-exports.component = _App2.default; // Include component
+exports.component = _App2.default;
+exports.actions = actions;
+exports.reducer = reducer;
 
 /***/ }),
 /* 155 */
@@ -15814,7 +15942,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var mapState = function mapState(state) {
-  return _extends({}, state.Sidebar);
+  return _extends({}, state.App);
 };
 
 var Sidebar = function (_Component) {
@@ -15884,16 +16012,7 @@ exports.default = (0, _reactRedux.connect)(mapState)(Sidebar);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reducer = exports.actions = exports.component = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-// Include component
-
-
-var _axios = __webpack_require__(47);
-
-var _axios2 = _interopRequireDefault(_axios);
+exports.component = undefined;
 
 var _Sidebar = __webpack_require__(157);
 
@@ -15901,127 +16020,8 @@ var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Action Definitions
-var ADD_CHANNEL = 'ADD_CHANNEL';
-var REMOVE_CHANNEL = 'REMOVE_CHANNEL';
-var SET_CHANNELS = 'SET_CHANNELS';
-
-// Initial State
-var initialState = {
-  channels: [{
-    id: 'ars-technica',
-    name: 'Ars Technica',
-    description: "The PC enthusiast's resource. Power users and the tools they love, without computing religion.",
-    url: 'http://arstechnica.com',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: {
-      small: '',
-      medium: '',
-      large: ''
-    },
-    sortBysAvailable: ['top', 'latest']
-  }, {
-    id: 'hacker-news',
-    name: 'Hacker News',
-    description: 'Hacker News is a social news website focusing on computer science and entrepreneurship. It is run by Paul Graham\'s investment fund and startup incubator, Y Combinator. In general, content that can be submitted is defined as "anything that gratifies one\'s intellectual curiosity".',
-    url: 'https://news.ycombinator.com',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: {
-      small: '',
-      medium: '',
-      large: ''
-    },
-    sortBysAvailable: ['top', 'latest']
-  }, {
-    id: 'recode',
-    name: 'Recode',
-    description: 'Get the latest independent tech news, reviews and analysis from Recode with the most informed and respected journalists in technology and media.',
-    url: 'http://www.recode.net',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: {
-      small: '',
-      medium: '',
-      large: ''
-    },
-    sortBysAvailable: ['top']
-  }, {
-    id: 'techcrunch',
-    name: 'TechCrunch',
-    description: 'TechCrunch is a leading technology media property, dedicated to obsessively profiling startups, reviewing new Internet products, and breaking tech news.',
-    url: 'https://techcrunch.com',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: {
-      small: '',
-      medium: '',
-      large: ''
-    },
-    sortBysAvailable: ['top', 'latest']
-  }, {
-    id: 'the-verge',
-    name: 'The Verge',
-    description: 'The Verge covers the intersection of technology, science, art, and culture.',
-    url: 'http://www.theverge.com',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: {
-      small: '',
-      medium: '',
-      large: ''
-    },
-    sortBysAvailable: ['top', 'latest']
-  }]
-
-  // Make Actions
-};var actions = {
-  addChannel: function addChannel(payload) {
-    return { type: ADD_CHANNEL, payload: payload };
-  },
-  removeChannel: function removeChannel(payload) {
-    return { type: REMOVE_CHANNEL, payload: payload };
-  },
-  setChannels: function setChannels(payload) {
-    return { type: SET_CHANNELS, payload: payload };
-  },
-  fetchChannels: function fetchChannels() {
-    return function (dispatch) {
-      _axios2.default.get('/api/channels').then(function (res) {
-        return res.data;
-      }).then(function (channels) {
-        return dispatch(actions.setChannels({ channels: channels }));
-      }).catch(console.error);
-    };
-  }
-
-  // Make Reducer
-};var reducer = function reducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case ADD_CHANNEL:
-      return _extends({}, state, action.payload);
-    case REMOVE_CHANNEL:
-      return _extends({}, state, action.payload);
-    case SET_CHANNELS:
-      return _extends({}, state, action.payload);
-    default:
-      return state;
-  }
-};
-
 // Export
-exports.component = _Sidebar2.default;
-exports.actions = actions;
-exports.reducer = reducer;
+exports.component = _Sidebar2.default; // Include component
 
 /***/ }),
 /* 159 */
