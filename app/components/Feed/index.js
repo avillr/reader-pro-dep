@@ -15,25 +15,11 @@ const initialState = {
 const actions = {
   setPosts: payload => ({ type: SET_POSTS, payload }),
   getPosts: id => dispatch => {
-    const NEWS_API_URL = 'https://newsapi.org/v1/articles'
     axios
-      .get(NEWS_API_URL, {
-        params: {
-          source: id,
-          sortBy: 'top',
-          apiKey: process.env.REACT_APP_NEWS_API_TOKEN
-        }
-      })
+      .get(`${id}/top`)
       .then(res => res.data)
-      .then(data => {
-        data.articles.forEach((article, index) => {
-          article.id = index
-          article.source = data.source
-          article.active = false
-          article.parsedContent = null
-        })
-        dispatch(actions.setPosts(data.articles))
-      })
+      .then(data => dispatch(actions.setPosts(data)))
+      .catch(console.error)
   }
 }
 

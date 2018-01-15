@@ -18,6 +18,7 @@ const mapDispatch = dispatch => ({
 class Feed extends Component {
   componentDidMount () {
     const feed = this.props.match.params.feed
+    console.log(feed)
     this.props.getPosts(feed)
   }
 
